@@ -1,6 +1,5 @@
 package com.pricecomparator.java.Models;
 
-import java.math.BigDecimal;
 
 public class Product {
 
