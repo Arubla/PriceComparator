@@ -1,0 +1,26 @@
+**************Program Breakdown************
+
+My goal with this document is simply to lay out the flow of the price comparator application, so I can build a clear understanding of how I will structure the program.
+
+***Goal
+
+The Price Comparator (PC) takes a search string from the user, and presents a list of the cheapest items found on top relevant websites, e.g. art supplies. 
+
+***The search
+
+The user is presented with a search bar and a submit button, The user types in the name of a product, and presses the button.
+
+on submit, the client takes the string and sends it back to the java server as a GET request.
+
+The java server's controller takes the GET request and calls the selenium service.
+
+the selenium service runs a function that searches several websites for the product, compiles the cheapest results from each website, then filters that down to a smaller list of the cheapest results across all the websites. It may be that a loop is performed on a list of websites, calling the same function repeatedly until the list is finished.
+
+for each result, the service will build a product object from the result's name, url, and price, then add it to the list within a product results object. 
+
+the service then returns the product results object to the controller, which then sends it back to the client.
+
+the controller also sends the product results object to a DAO, which will post the results to a database.
+(maybe instead it just saves the original parameter of the GET request. That would be easier)
+
+The client presents the product results in a table, with an <a> tag for the url, so the user can navigate directly to the product.
